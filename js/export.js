@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const downloadPdfBtn = document.getElementById('download-pdf');
+
     const downloadHtmlBtn = document.getElementById('download-html');
 
     // CSS Content Inlined for robust local export (All 10 Templates)
@@ -94,32 +94,10 @@ body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1a1a1a; backg
 .animate:nth-child(3) { animation-delay: 0.3s; }
 `;
 
-    downloadPdfBtn.addEventListener('click', exportToPdf);
+
     downloadHtmlBtn.addEventListener('click', exportToHtml);
 
-    async function exportToPdf() {
-        const { jsPDF } = window.jspdf;
-        const element = document.getElementById('portfolio-render-area');
-        downloadPdfBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
-        downloadPdfBtn.disabled = true;
 
-        try {
-            const canvas = await html2canvas(element, { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff' });
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-            const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save('portfolio.pdf');
-        } catch (error) {
-            console.error('PDF Export failed:', error);
-            alert('Failed to generate PDF.');
-        } finally {
-            downloadPdfBtn.innerHTML = '<i class="fas fa-file-pdf"></i> Download PDF';
-            downloadPdfBtn.disabled = false;
-        }
-    }
 
     function exportToHtml() {
         const data = window.currentData;
