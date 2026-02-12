@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Preview - PortfoliGo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/template.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2canvas and jsPDF for export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body class="preview-page">
+    <div class="preview-toolbar">
+        <div class="toolbar-left">
+            <a href="index.html" class="btn btn-secondary">
+                <i class="fas fa-edit"></i> Edit Details
+            </a>
+            <select id="template-selector" class="template-select">
+                <option value="glass">Glassmorphism</option>
+                <option value="executive">Executive B&W</option>
+                <option value="motion">Interactive Motion</option>
+            </select>
+        </div>
+        <div class="toolbar-right">
+            <button id="download-pdf" class="btn btn-primary">
+                <i class="fas fa-file-pdf"></i> Download PDF
+            </button>
+            <button id="download-html" class="btn btn-secondary">
+                <i class="fas fa-code"></i> Download HTML
+            </button>
+        </div>
+    </div>
+
+    <div id="portfolio-render-area" class="portfolio-container">
+        <!-- Dynamic content will be injected here -->
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/preview.js"></script>
+</body>
+
+</html>

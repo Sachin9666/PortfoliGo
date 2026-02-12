@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Generator - Create Your Professional Identity</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-magic"></i>
+                <span>PortfoliGo</span>
+            </div>
+            <nav>
+                <button id="generate-btn" class="btn btn-primary">
+                    Generate Portfolio <i class="fas fa-arrow-right"></i>
+                </button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <h1>Build Your <span>Dream Portfolio</span> in Minutes</h1>
+                <p>Enter your details below and watch the magic happen.</p>
+            </section>
+
+            <form id="portfolio-form" class="glass-card">
+                <!-- Personal Information -->
+                <div class="form-section" id="personal-info">
+                    <h2><i class="fas fa-user-circle"></i> Personal Details</h2>
+                    <div class="grid-layout">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Sachin Gandikota" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Professional Title</label>
+                            <input type="text" id="title" name="title" placeholder="Full Stack Developer" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="about">About Me</label>
+                            <textarea id="about" name="about" placeholder="Tell us about yourself..."
+                                required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="sachin@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 9876543210">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" placeholder="Guntur, Andhra Pradesh">
+                        </div>
+                        <div class="form-group full-width profile-upload-group">
+                            <label>Profile Photo</label>
+                            <div class="upload-controls">
+                                <label for="profileImage" class="btn btn-secondary">
+                                    <i class="fas fa-upload"></i> Choose Photo
+                                </label>
+                                <input type="file" id="profileImage" accept="image/*" style="display: none;">
+                                <div id="image-preview" class="image-preview">
+                                    <img id="preview-img" src="" alt="Preview" style="display: none;">
+                                    <span id="preview-placeholder">No photo selected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="form-section" id="social-links">
+                    <h2><i class="fas fa-link"></i> Professional Links</h2>
+                    <div class="grid-layout">
+                        <div class="form-group">
+                            <label for="github">GitHub URL</label>
+                            <input type="url" id="github" name="github" placeholder="github.com/username">
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn URL</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="linkedin.com/in/username">
+                        </div>
+                        <div class="form-group">
+                            <label for="twitter">Twitter / X URL</label>
+                            <input type="url" id="twitter" name="twitter" placeholder="twitter.com/username">
+                        </div>
+                        <div class="form-group">
+                            <label for="portfolio-url">Personal Website</label>
+                            <input type="url" id="portfolio-url" name="portfolio-url"
+                                placeholder="my-portfolio-mocha-sigma-83.vercel.app">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="form-section" id="education-section">
+                    <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                    <div id="education-list" class="dynamic-list">
+                        <!-- Education items will be added here -->
+                    </div>
+                    <button type="button" class="btn btn-secondary add-item-btn" data-type="education">
+                        <i class="fas fa-plus"></i> Add Education
+                    </button>
+                </div>
+
+                <!-- Skills -->
+                <div class="form-section" id="skills-section">
+                    <h2><i class="fas fa-tools"></i> Skills</h2>
+                    <div class="form-group">
+                        <label>Add Skills (separated by commas)</label>
+                        <input type="text" id="skills-input" placeholder="JavaScript, React, Node.js, CSS">
+                        <div id="skills-tags" class="tags-container"></div>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="form-section" id="projects-section">
+                    <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+                    <div id="projects-list" class="dynamic-list">
+                        <!-- Project items will be added here -->
+                    </div>
+                    <button type="button" class="btn btn-secondary add-item-btn" data-type="projects">
+                        <i class="fas fa-plus"></i> Add Project
+                    </button>
+                </div>
+
+                <!-- Experience -->
+                <div class="form-section" id="experience-section">
+                    <h2><i class="fas fa-briefcase"></i> Experience</h2>
+                    <div id="experience-list" class="dynamic-list">
+                        <!-- Experience items will be added here -->
+                    </div>
+                    <button type="button" class="btn btn-secondary add-item-btn" data-type="experience">
+                        <i class="fas fa-plus"></i> Add Experience
+                    </button>
+                </div>
+
+                <!-- Certifications -->
+                <div class="form-section" id="certifications-section">
+                    <h2><i class="fas fa-certificate"></i> Certifications</h2>
+                    <div id="certifications-list" class="dynamic-list">
+                        <!-- Certification items will be added here -->
+                    </div>
+                    <button type="button" class="btn btn-secondary add-item-btn" data-type="certifications">
+                        <i class="fas fa-plus"></i> Add Certification
+                    </button>
+                </div>
+
+                <!-- Template Selection -->
+                <div class="form-section" id="template-section">
+                    <h2><i class="fas fa-palette"></i> Choose a Premium Template</h2>
+                    <div class="template-grid">
+                        <label class="template-option" for="tpl-glass">
+                            <input type="radio" name="template" id="tpl-glass" value="glass" checked>
+                            <div class="template-card glass-preview"><span>Glassmorphism</span></div>
+                        </label>
+                        <label class="template-option" for="tpl-executive">
+                            <input type="radio" name="template" id="tpl-executive" value="executive">
+                            <div class="template-card executive-preview"><span>Executive B&W</span></div>
+                        </label>
+                        <label class="template-option" for="tpl-motion">
+                            <input type="radio" name="template" id="tpl-motion" value="motion">
+                            <div class="template-card motion-preview"><span>Interactive Motion</span></div>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 PortfoliGo. Designed for visual excellence.</p>
+        </footer>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/form.js"></script>
+</body>
+
+</html>
