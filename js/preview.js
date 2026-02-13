@@ -167,7 +167,7 @@ function renderGlassTemplate(data) {
                 align-items: center;
                 justify-content: space-between;
                 gap: 4rem;
-                padding: 4rem 0;
+                padding: 4rem 1.5rem;
             }
 
             .hero-text h1 {
@@ -313,20 +313,17 @@ function renderGlassTemplate(data) {
 
             .glass-nav {
                 position: sticky;
-                top: 1rem;
-                width: 90%;
-                max-width: 1200px;
-                margin: 0 auto;
+                top: 0;
+                width: 100%;
                 z-index: 1000;
                 padding: 1rem 2rem;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                background: rgba(3, 0, 20, 0.6);
+                background: rgba(3, 0, 20, 0.8);
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 100px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             }
 
@@ -377,8 +374,36 @@ function renderGlassTemplate(data) {
             @media (max-width: 992px) {
                 .hero-glass { flex-direction: column; text-align: center; justify-content: center; padding-top: 8rem; }
                 .hero-img-container { order: -1; margin-bottom: 2rem; }
-                .glass-nav { width: 95%; padding: 1rem; top: 0.5rem; }
-                .glass-nav .nav-links { display: none; }
+                .glass-nav { padding: 1rem 1.5rem; }
+                
+                .glass-nav .nav-toggle { 
+                    display: block; 
+                    font-size: 1.5rem; 
+                    color: #fff; 
+                    cursor: pointer; 
+                    z-index: 2000; 
+                }
+                
+                .glass-nav .nav-links { 
+                    display: flex; 
+                    position: fixed; 
+                    top: 0; 
+                    right: -100%; 
+                    width: 100%; 
+                    height: 100vh; 
+                    background: rgba(3, 0, 20, 0.98); 
+                    backdrop-filter: blur(25px);
+                    -webkit-backdrop-filter: blur(25px);
+                    flex-direction: column; 
+                    justify-content: center; 
+                    align-items: center; 
+                    gap: 3rem;
+                    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                    z-index: 1500;
+                }
+                
+                .glass-nav .nav-links.active { right: 0; }
+                .glass-nav .nav-links a { font-size: 1.5rem; }
             }
         </style>
 
@@ -392,12 +417,15 @@ function renderGlassTemplate(data) {
                 <div class="nav-logo">
                     <i class="fas fa-cube" style="color: var(--accent); margin-right: 0.5rem;"></i>${data.personal.name}
                 </div>
+                <div class="nav-toggle" style="display: none;" onclick="const links = document.querySelector('.glass-nav .nav-links'); links.classList.toggle('active'); this.innerHTML = links.classList.contains('active') ? '<i class=\'fas fa-times\'></i>' : '<i class=\'fas fa-bars\'></i>';">
+                    <i class="fas fa-bars"></i>
+                </div>
                 <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Work</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#about" onclick="document.querySelector('.glass-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">About</a>
+                    <a href="#experience" onclick="document.querySelector('.glass-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Experience</a>
+                    <a href="#skills" onclick="document.querySelector('.glass-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Skills</a>
+                    <a href="#projects" onclick="document.querySelector('.glass-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Work</a>
+                    <a href="#contact" onclick="document.querySelector('.glass-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Contact</a>
                 </div>
             </nav>
             
@@ -772,8 +800,43 @@ function renderExecutiveTemplate(data) {
                 .item-row .year { margin-bottom: 0.5rem; }
                 .case-study { grid-template-columns: 1fr; gap: 2rem; }
                 .exec-nav { padding: 0 1.5rem; }
-                .exec-nav .nav-links { display: none; }
                 .exec-footer { margin: 0 -1.5rem -1.5rem -1.5rem; padding: 4rem 1.5rem; }
+                
+                .exec-nav .nav-toggle { 
+                    display: block; 
+                    font-size: 1.5rem; 
+                    color: #000; 
+                    cursor: pointer; 
+                    z-index: 2000; 
+                }
+                
+                .exec-nav .nav-links {
+                    display: flex !important;
+                    position: fixed;
+                    top: 0;
+                    right: -100%;
+                    width: 100%;
+                    height: 100vh;
+                    background: #fff;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0;
+                    transition: 0.3s ease-in-out;
+                    padding-top: 0;
+                    z-index: 1500;
+                }
+                
+                .exec-nav .nav-links.active { right: 0; }
+                
+                .exec-nav .nav-links a {
+                    width: 100%;
+                    height: auto;
+                    padding: 1.5rem 0;
+                    justify-content: center;
+                    border-bottom: 1px solid #eee;
+                    font-size: 1.2rem;
+                }
             }
         </style>
 
@@ -781,13 +844,16 @@ function renderExecutiveTemplate(data) {
             <!-- Navbar -->
             <nav class="exec-nav">
                 <div class="nav-logo">${data.personal.name}</div>
+                <div class="nav-toggle" onclick="const links = document.querySelector('.exec-nav .nav-links'); links.classList.toggle('active'); this.innerHTML = links.classList.contains('active') ? '<i class=\'fas fa-times\'></i>' : '<i class=\'fas fa-bars\'></i>'" style="display: none;">
+                    <i class="fas fa-bars"></i>
+                </div>
                 <div class="nav-links">
-                    <a href="#about">Profile</a>
-                    <a href="#experience">History</a>
-                    <a href="#skills">Capability</a>
-                    <a href="#projects">Work</a>
-                    <a href="#certifications">Credentials</a>
-                    <a href="#contact">Inquiry</a>
+                    <a href="#about" onclick="document.querySelector('.exec-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Profile</a>
+                    <a href="#experience" onclick="document.querySelector('.exec-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">History</a>
+                    <a href="#skills" onclick="document.querySelector('.exec-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Capability</a>
+                    <a href="#projects" onclick="document.querySelector('.exec-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Work</a>
+                    <a href="#certifications" onclick="document.querySelector('.exec-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Credentials</a>
+                    <a href="#contact" onclick="document.querySelector('.exec-nav .nav-links').classList.remove('active'); document.querySelector('.nav-toggle').innerHTML = '<i class=\'fas fa-bars\'></i>'">Inquiry</a>
                 </div>
             </nav>
             
@@ -1104,20 +1170,20 @@ function renderMotionTemplate(data) {
 
             .motion-nav {
                 position: fixed;
-                top: 2rem;
-                left: 50%;
-                transform: translateX(-50%);
+                top: 0;
+                left: 0;
+                width: 100%;
                 z-index: 1000;
-                background: rgba(0, 0, 0, 0.5);
+                background: rgba(0, 0, 0, 0.7);
                 backdrop-filter: blur(20px);
-                padding: 0.8rem 2rem;
-                border-radius: 100px; 
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 4rem;
                 display: flex;
-                gap: 2rem;
+                justify-content: center;
+                gap: 3rem;
                 align-items: center;
                 box-shadow: 0 10px 40px rgba(0,0,0,0.5);
                 transition: 0.3s;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
 
             .motion-nav a {
@@ -1177,8 +1243,51 @@ function renderMotionTemplate(data) {
 
             @media (max-width: 768px) {
                 .hero-title { font-size: 3.5rem; }
-                .motion-nav { width: 90%; justify-content: space-around; gap: 0; padding: 1rem; top: 1rem; }
-                .motion-nav a { font-size: 0.6rem; letter-spacing: 1px; }
+                
+                .motion-nav {
+                    top: 0;
+                    right: 0;
+                    left: auto;
+                    transform: none;
+                    width: 100%;
+                    height: 100vh;
+                    background: #000;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 3rem;
+                    padding: 0;
+                    border-radius: 0;
+                    pointer-events: none;
+                    opacity: 0;
+                    transition: 0.4s ease;
+                }
+                
+                .motion-nav.active {
+                    opacity: 1;
+                    pointer-events: all;
+                    z-index: 2000;
+                }
+                
+                .motion-nav a { font-size: 1.5rem; letter-spacing: 2px; }
+                
+                .mobile-toggle-btn {
+                    display: flex !important;
+                    position: fixed;
+                    top: 1.5rem;
+                    right: 1.5rem;
+                    z-index: 2100;
+                    width: 50px;
+                    height: 50px;
+                    background: rgba(255,255,255,0.1);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255,255,255,0.1);
+                    border-radius: 50%;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    color: #fff;
+                }
             }
         </style>
 
@@ -1187,13 +1296,17 @@ function renderMotionTemplate(data) {
                 <div class="floating-shape" style="width: 500px; height: 500px; top: -10%; left: -10%;"></div>
                 <div class="floating-shape" style="width: 400px; height: 400px; bottom: 10%; right: -5%; animation-delay: -5s; background: linear-gradient(45deg, #00f2ff, var(--tertiary)); opacity: 0.1;"></div>
             </div>
-
+            
+            <div class="mobile-toggle-btn" style="display: none;" onclick="const nav = document.querySelector('.motion-nav'); nav.classList.toggle('active'); this.innerHTML = nav.classList.contains('active') ? '<i class=\'fas fa-times\'></i>' : '<i class=\'fas fa-bars\'></i>'">
+                <i class="fas fa-bars"></i>
+            </div>
+            
             <nav class="motion-nav">
-                <a href="#about" class="active">Home</a>
-                <a href="#journey">Journey</a>
-                <a href="#work">Work</a>
-                <a href="#certifications">Awards</a>
-                <a href="#contact">Contact</a>
+                <a href="#about" class="active" onclick="document.querySelector('.motion-nav').classList.remove('active'); document.querySelector('.mobile-toggle-btn').innerHTML = '<i class=\'fas fa-bars\'></i>'">Home</a>
+                <a href="#journey" onclick="document.querySelector('.motion-nav').classList.remove('active'); document.querySelector('.mobile-toggle-btn').innerHTML = '<i class=\'fas fa-bars\'></i>'">Journey</a>
+                <a href="#work" onclick="document.querySelector('.motion-nav').classList.remove('active'); document.querySelector('.mobile-toggle-btn').innerHTML = '<i class=\'fas fa-bars\'></i>'">Work</a>
+                <a href="#certifications" onclick="document.querySelector('.motion-nav').classList.remove('active'); document.querySelector('.mobile-toggle-btn').innerHTML = '<i class=\'fas fa-bars\'></i>'">Awards</a>
+                <a href="#contact" onclick="document.querySelector('.motion-nav').classList.remove('active'); document.querySelector('.mobile-toggle-btn').innerHTML = '<i class=\'fas fa-bars\'></i>'">Contact</a>
             </nav>
 
             <div class="motion-container">

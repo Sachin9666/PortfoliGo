@@ -346,6 +346,48 @@ textarea {
     .hero-section h1 {
         font-size: 2rem;
     }
+
+    /* Landing Page Header Mobile */
+    header {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .logo {
+        margin-right: 0;
+    }
+
+    header .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Preview Toolbar Mobile */
+    .preview-toolbar {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .toolbar-left,
+    .toolbar-right {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .template-select {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .preview-toolbar button {
+        flex: 1;
+        justify-content: center;
+    }
 }
 
 /* Profile Upload */
